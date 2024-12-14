@@ -10,6 +10,12 @@ namespace Hangman
     {
         static void Main(string[] args)
         {
+            Renderer renderer = new Renderer();
+            DiedPerson diedPerson = new DiedPerson();
+            renderer.AddGameObjectsForRendering(diedPerson.GetDiedPersonParts());
+            renderer.Render();
         }
     }
+
+    
 }
