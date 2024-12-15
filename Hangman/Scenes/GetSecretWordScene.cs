@@ -5,10 +5,10 @@ namespace Hangman
 {
     class GetSecretWordScene : Scene
     {
-        private GameObject _helloText = new GameObject("Добро пожаловать в игру 'Виселица'!",
+        private readonly GameObject _helloText = new GameObject("Добро пожаловать в игру 'Виселица'!",
             new Vector2(Math.Abs(Console.WindowWidth / 2 - "Добро пожаловать в игру 'Виселица'!".Length / 2), 0));
-        private GameObject _pleaseWriteSecretWord = new GameObject("Введите слово, которое хотите загадать:", new Vector2(0, 1));
-        private GameScene _nextScene = new GameScene();
+        private readonly GameObject _pleaseWriteSecretWord = new GameObject("Введите слово, которое хотите загадать:", new Vector2(0, 1));
+        private readonly GameScene _nextScene = new GameScene();
         private Renderer _renderer;
         private string _word;
 

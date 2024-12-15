@@ -15,7 +15,7 @@ namespace Hangman
             GameObjectsInScene.Add(new GameObject(word, new Vector2(Console.WindowWidth / 4, 0)));
             base.Start(renderer, word);
 
-            InputReader.GetInput(1);
+            Console.ReadKey();
             ChangeScene();
         }
 

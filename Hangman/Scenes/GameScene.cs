@@ -5,11 +5,11 @@ namespace Hangman
 {
     class GameScene : Scene
     {
-        private DiedPerson _diedPerson = new DiedPerson();
-        private GameObject _uncorrectText = new GameObject("Неправильно введённые буквы:", new Vector2(0, 7));
+        private readonly DiedPerson _diedPerson = new DiedPerson();
+        private readonly GameObject _uncorrectText = new GameObject("Неправильно введённые буквы:", new Vector2(0, 7));
         private List<char> _uncorrectLetters = new List<char>(4);
         private int _attempts = 0;
-        private WinScene _nextScene = new WinScene();
+        private readonly WinScene _nextScene = new WinScene();
         private string _resultText;
         private Renderer _renderer;
 
@@ -42,7 +42,7 @@ namespace Hangman
 
                     if (!renderer.IsGameObjectsForRenderingContainsGameObjectWithValue("_ "))
                     {
-                        _resultText = $"Поздравляем с победой! Вы отгадали слово за столько ходов: {_attempts}\nДля продолжения введите любую русскую букву и нажмите Enter...";
+                        _resultText = $"Поздравляем с победой! Вы отгадали слово за столько ходов: {_attempts}\nДля продолжения нажмите любую клавишу...";
                         ChangeScene();
                     }
                 }
@@ -77,7 +77,7 @@ namespace Hangman
                 renderer.Render();
             }
 
-            _resultText = $"Сожалеем, Вы проиграли! Надеемся, в следующий раз у Вас всё получится!\nДля продолжения введите любую русскую букву и нажмите Enter...";
+            _resultText = $"Сожалеем, Вы проиграли! Надеемся, в следующий раз у Вас всё получится!\nДля продолжения нажмите любую клавишу...";
             ChangeScene();
         }
 
