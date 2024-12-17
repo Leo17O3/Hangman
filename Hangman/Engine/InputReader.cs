@@ -14,7 +14,7 @@ namespace Hangman
 
             while (inputCounts < maxInputCounts || maxInputCounts == 0)
             {
-                if (Regex.IsMatch(key.KeyChar.ToString(), "^[а-яА-Я]*$"))
+                if (Regex.IsMatch(key.KeyChar.ToString(), "^[а-яёА-ЯЁ]*$"))
                 {
                     ++inputCounts;
                     Console.Write(key.KeyChar.ToString().ToUpper());

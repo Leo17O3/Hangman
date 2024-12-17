@@ -7,21 +7,21 @@ namespace Hangman
     {
         private Renderer _renderer;
 
-        public override void Start(Renderer renderer, string word = null)
+        public override void Start(Renderer renderer, Scene[] scenes, int index, string word = null)
         {
             _renderer = renderer;
 
             GameObjectsInScene = new List<GameObject>();
             GameObjectsInScene.Add(new GameObject(word, new Vector2(Console.WindowWidth / 4, 0)));
-            base.Start(renderer, word);
+            base.Start(renderer, scenes, index, word);
 
             Console.ReadKey();
-            ChangeScene();
+            ChangeScene(scenes, index);
         }
 
-        public override void ChangeScene()
+        public override void ChangeScene(Scene[] scenes, int index)
         {
-            new GetSecretWordScene().Start(_renderer, null);
+            scenes[0].Start(_renderer, scenes, 0, null);
         }
     }
 }

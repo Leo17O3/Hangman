@@ -8,26 +8,25 @@ namespace Hangman
         private readonly GameObject _helloText = new GameObject("Добро пожаловать в игру 'Виселица'!",
             new Vector2(Math.Abs(Console.WindowWidth / 2 - "Добро пожаловать в игру 'Виселица'!".Length / 2), 0));
         private readonly GameObject _pleaseWriteSecretWord = new GameObject("Введите слово, которое хотите загадать:", new Vector2(0, 1));
-        private readonly GameScene _nextScene = new GameScene();
         private Renderer _renderer;
         private string _word;
 
-        public override void Start(Renderer renderer, string word)
+        public override void Start(Renderer renderer, Scene[] scenes, int index, string word)
         {
             GameObjectsInScene = new List<GameObject>() { _helloText, _pleaseWriteSecretWord };
-            base.Start(renderer);
+            base.Start(renderer, null, 0);
 
             string input = InputReader.GetInput();
 
             _renderer = renderer;
             _word = input;
 
-            ChangeScene();
+            ChangeScene(scenes, index);
         }
 
-        public override void ChangeScene()
+        public override void ChangeScene(Scene[] scenes, int index)
         {
-            _nextScene.Start(_renderer, _word);
+            scenes[++index].Start(_renderer, scenes, index, _word);
         }
     }
 }

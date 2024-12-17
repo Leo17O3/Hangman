@@ -9,11 +9,10 @@ namespace Hangman
         private readonly GameObject _uncorrectText = new GameObject("Неправильно введённые буквы:", new Vector2(0, 7));
         private List<char> _uncorrectLetters = new List<char>(4);
         private int _attempts = 0;
-        private readonly WinScene _nextScene = new WinScene();
         private string _resultText;
         private Renderer _renderer;
 
-        public override void Start(Renderer renderer, string word)
+        public override void Start(Renderer renderer, Scene[] scenes, int index, string word)
         {
             _renderer = renderer;
             GameObjectsInScene = new List<GameObject>();
@@ -24,7 +23,7 @@ namespace Hangman
                 GameObjectsInScene.Add(new GameObject("_ ", new Vector2(i, 0)));
             }
 
-            base.Start(renderer);
+            base.Start(renderer, null, 0);
             for (; _uncorrectLetters.Count < 5; )
             {
                 string input = InputReader.GetInput(1);
@@ -43,7 +42,7 @@ namespace Hangman
                     if (!renderer.IsGameObjectsForRenderingContainsGameObjectWithValue("_ "))
                     {
                         _resultText = $"Поздравляем с победой! Вы отгадали слово за столько ходов: {_attempts}\nДля продолжения нажмите любую клавишу...";
-                        ChangeScene();
+                        ChangeScene(scenes, index);
                     }
                 }
                 else if (!_uncorrectLetters.Contains(input.ToCharArray()[0]))
@@ -78,12 +77,12 @@ namespace Hangman
             }
 
             _resultText = $"Сожалеем, Вы проиграли! Надеемся, в следующий раз у Вас всё получится!\nДля продолжения нажмите любую клавишу...";
-            ChangeScene();
+            ChangeScene(scenes, index);
         }
 
-        public override void ChangeScene()
+        public override void ChangeScene(Scene[] scenes, int index)
         {
-            new WinScene().Start(_renderer, _resultText);
+            scenes[++index].Start(_renderer, scenes, index, _resultText);
         }
     }
 }

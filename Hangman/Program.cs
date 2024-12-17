@@ -6,7 +6,7 @@
         {
             Renderer renderer = new Renderer();
             GetSecretWordScene getSecretWordScene = new GetSecretWordScene();
-            getSecretWordScene.Start(renderer, null);
+            getSecretWordScene.Start(renderer, new Scene[] { new GetSecretWordScene(), new GameScene(), new WinScene() }, 0, null);
         }
     }
 }

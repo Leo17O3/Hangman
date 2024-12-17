@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Hangman
 {
@@ -10,14 +6,14 @@ namespace Hangman
     {
         protected List<GameObject> GameObjectsInScene;
 
-        public virtual void Start(Renderer renderer, string word = null)
+        public virtual void Start(Renderer renderer, Scene[] scenes, int currentIndex, string word = null)
         {
             renderer.Reset();
             renderer.AddGameObjectsForRendering(GameObjectsInScene);
             renderer.Render();
         }
 
-        public virtual void ChangeScene() { }
+        public virtual void ChangeScene(Scene[] scenes, int index) { }
 
         public List<GameObject> GetGameObjectsInScene()
         {
